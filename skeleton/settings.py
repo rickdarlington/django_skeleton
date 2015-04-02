@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 ALLOWED_HOSTS = []
 LOGIN_URL = '/login'
+SITE_ID = 1
 
 # TODO: read secret key from filesystem:
 #   https://docs.djangoproject.com/en/1.8/topics/settings/
@@ -19,15 +20,18 @@ WSGI_APPLICATION = 'skeleton.wsgi.application'
 # TODO staticfiles handling via nginx
 STATIC_URL = '/global_static/'
 
-#TODO usernameless user model
+
+#auth
 AUTH_USER_MODEL = 'emailauth.MyUser'
 
-REGISTRATION_OPEN = True
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/accounts/login/' 
+AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "required"
+ACCOUNT_PASSWORD_MIN_LENGTH = 4
 
 DEFAULT_APPS = (
     'django.contrib.admin',
@@ -36,11 +40,14 @@ DEFAULT_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 )
 
 THIRD_PARTY_APPS = (
     'bootstrap3',
-    'registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 )
 
 LOCAL_APPS = (
@@ -76,6 +83,17 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    #"django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 LOGGING = {
     'version': 1,

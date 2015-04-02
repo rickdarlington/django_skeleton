@@ -3,6 +3,9 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+class Client(AbstractBaseUser):
+   class Meta:
+      swappable = 'AUTH_USER_MODEL'
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, password=None):
