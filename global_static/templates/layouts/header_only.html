@@ -1,0 +1,68 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="csrf-token" content="{{csrf_token}}">
+    <link rel="icon" href="{% static "favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <script type="text/javascript" src="{% static "js/underscore-min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/backbone-min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/jquery-2.1.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/json2.js" %}"></script>
+    <title>{% block title %}SKELETON{% endblock %}</title>
+  </head>
+
+  <body class="headeronly">
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">SKELETON</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        {% if user.is_anonymous %}
+          <form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="navbar-form navbar-right" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+              <input id="id_username" name="username" type="text" placeholder="email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input id="id_password" name="password" type="password" placeholder="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        {% else %}
+          <div class="navbar-form navbar-right" style="color:white;">Welcome back {{user}}!&nbsp;&nbsp;<a href="/logout/">[log out]</a></div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div><!-- /.container -->
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+  </body>
+</html>

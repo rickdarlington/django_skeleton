@@ -1,0 +1,16 @@
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: password@SITENAME
+To: ricklusive@gmail.com
+Date: Thu, 02 Apr 2015 02:29:03 -0000
+Message-ID: <20150402022903.44353.80066@roostyBook.local>
+
+
+Reset password at localhost:8000:
+
+http://localhost:8000/accounts/password/reset/confirm/MQ/40k-4a3fe084c62b0c898ce8/
+
+
+-------------------------------------------------------------------------------
