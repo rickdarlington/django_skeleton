@@ -14,6 +14,9 @@ urlpatterns = [
 
 	#TODO update profile view
     url(r'^accounts/profile/$', 'skeleton.views.home', name='home'),
+
+    #TODO login required example
+	url(r'^loginrequired/$', 'skeleton.views.loginrequired', name='home'),    
 ]
 
 # ^admin/
