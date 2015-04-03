@@ -18,3 +18,10 @@ def login(request):
 def loginrequired(request):
 	some_text = "hi there!"
 	return render_to_response("loginrequired.html", locals(), context_instance=RequestContext(request))
+
+def about(request):
+	return render_to_response("about.html", locals(), context_instance=RequestContext(request))
+
+#TODO remove intro for launch
+def intro(request):
+	return render_to_response("intro.html", locals(), context_instance=RequestContext(request))

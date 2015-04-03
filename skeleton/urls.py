@@ -2,15 +2,15 @@ from django.conf.urls import patterns, include, url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse
+from beta import views as beta_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^accounts/', include('allauth.urls')),
 
-    url(r'^logout/$', auth_views.logout_then_login, name='logout'),
-    url(r'^login/$', auth_views.login, name='login'),
-
-	url(r'^$', 'skeleton.views.home', name='home'),
+	#TODO remove django-beta for release
+	url(r'^beta/', include('beta.urls')),
+	url(r'^$', beta_views.Signup.as_view(), name='home'),
 
 	#TODO update profile view
     url(r'^accounts/profile/$', 'skeleton.views.home', name='home'),
@@ -18,8 +18,9 @@ urlpatterns = [
     #TODO login required example
 	url(r'^loginrequired/$', 'skeleton.views.loginrequired', name='home'),    
 
-	#TODO remove django-beta for release
-	url(r'^beta/', include('beta.urls')),
+    url(r'^logout/$', auth_views.logout_then_login, name='logout'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^about/$', 'skeleton.views.about', name='home'),	
 ]
 
 # ^admin/

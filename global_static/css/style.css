@@ -3,6 +3,10 @@ body {
   padding-bottom: 20px;
 }
 
+.maincontent {
+  padding: 20px 20px 20px 20px;
+}
+
 .headeronly {
   padding-top: 75px;
   padding-bottom: 20px;
