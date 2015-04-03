@@ -17,6 +17,9 @@ urlpatterns = [
 
     #TODO login required example
 	url(r'^loginrequired/$', 'skeleton.views.loginrequired', name='home'),    
+
+	#TODO remove django-beta for release
+	url(r'^beta/', include('beta.urls')),
 ]
 
 # ^admin/

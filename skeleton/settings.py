@@ -20,6 +20,9 @@ WSGI_APPLICATION = 'skeleton.wsgi.application'
 # TODO staticfiles handling via nginx
 STATIC_URL = '/global_static/'
 
+#TODO remove beta for release
+BETA_CAPTURE_FIRST = False
+BETA_CAPTURE_BOTH = False
 
 #auth
 AUTH_USER_MODEL = 'emailauth.MyUser'
@@ -51,6 +54,7 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
+    'beta',
     'emailauth',
 )
 
@@ -70,8 +74,8 @@ MIDDLEWARE_CLASSES = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "global_static", "templates", "layouts"), 
-                 os.path.join(BASE_DIR, "global_static", "templates")],
+        'DIRS': [os.path.join(BASE_DIR, "templates", "layouts"), 
+                 os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +95,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    #"django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
@@ -144,11 +147,6 @@ DATABASES = {
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "global_static"),
-)
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "global_static", "templates", "layouts"),
-    os.path.join(BASE_DIR, "global_static", "templates"),
 )
 
 #TODO production email settings
