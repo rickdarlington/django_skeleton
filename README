@@ -1,0 +1,21 @@
+how to use this project:
+
+It's easy really.  I'll assume you have python installed at this point.
+
+The project is configured for Django 1.8 (see skeleton/settings.py for the context processors change needed to make it  work with 1.7)
+
+You're using virtualenv, right?
+
+1. pip install virtualenvwrapper
+2. mkvirtualenv django_skeleton 
+    (or whatever name you like)
+3. source django_skeleton/bin/activate
+4. pip install -r /path/to/requirements.txt
+5. python manage.py migrate
+6. python manage.py runserver
+
+There you go.  You've got a bootstrap 3, django 1.8 (+ backbone, jquery, json2js, underscore, etc) project with email signup working.  Go forth and build something great!
+
+If you're new, or for a more detailed overview of how to start working with python+django, check out Jeff Knupp's excellent (if a bit out of date) overview here: http://www.jeffknupp.com/blog/2013/12/18/starting-a-django-16-project-the-right-way/
+
+Or go straight to the source: https://docs.djangoproject.com/en/1.8/intro/tutorial01/

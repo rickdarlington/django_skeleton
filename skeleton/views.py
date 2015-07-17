@@ -21,7 +21,3 @@ def loginrequired(request):
 
 def about(request):
 	return render_to_response("about.html", locals(), context_instance=RequestContext(request))
-
-#TODO remove intro for launch
-def intro(request):
-	return render_to_response("intro.html", locals(), context_instance=RequestContext(request))

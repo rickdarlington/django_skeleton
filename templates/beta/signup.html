@@ -1,9 +1,0 @@
-{% extends "intro.html" %}
-
-{% block content %} 
-	Want to know more?  Leave us your email address and we'll let you know when we launch!
-	<form method="POST" action=".">
-	    {% csrf_token %}
-	    {{ form }}
-	</form>
-{% endblock %}

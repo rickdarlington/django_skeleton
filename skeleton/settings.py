@@ -11,7 +11,7 @@ SITE_ID = 1
 
 # TODO: read secret key from filesystem:
 #   https://docs.djangoproject.com/en/1.8/topics/settings/
-SECRET_KEY = '8bg^v)1t%e6&#74hn)yu(1i7v=kjyh((20s*xem1-6y_&-hr*h'
+SECRET_KEY = 'PUT SOMETHING MEANINGFUL (and secret) HERE'
 
 # TODO: update skeleton values
 ROOT_URLCONF = 'skeleton.urls'
@@ -19,10 +19,6 @@ WSGI_APPLICATION = 'skeleton.wsgi.application'
 
 # TODO staticfiles handling via nginx
 STATIC_URL = '/global_static/'
-
-#TODO remove beta for release
-BETA_CAPTURE_FIRST = False
-BETA_CAPTURE_BOTH = False
 
 #auth
 AUTH_USER_MODEL = 'emailauth.MyUser'
@@ -54,7 +50,6 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
-    'beta',
     'emailauth',
 )
 
@@ -71,6 +66,16 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
+# If you are running Django 1.8+, specify the context processors
+# as follows:
+#TEMPLATE_CONTEXT_PROCESSORS = (
+#    "django.core.context_processors.request",
+#    "allauth.account.context_processors.account",
+#    "allauth.socialaccount.context_processors.socialaccount",
+#)
+
+# If you are running Django 1.8+, specify the context processors
+# as follows:
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,20 +84,22 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # Already defined Django-related contexts here
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
+
+                # `allauth` specific context processors
+                'allauth.account.context_processors.account',
+                'django.contrib.auth.context_processors.auth',
+                'allauth.socialaccount.context_processors.socialaccount',
             ],
         },
     },
 ]
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.request",
-    "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
-)
 
 AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
